@@ -1,16 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import PaceChart from './PaceChart';
+import Nav from './Nav';
+
+const default_unit = 'metric';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          <PaceChart />
-        </p>
+      <Nav/>
+      <header className="heading">
+        Pace Chart
       </header>
+      <div>
+        <PaceChart unit={default_unit}/>
+      </div>
     </div>
   );
 }

@@ -1,26 +1,39 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import PaceChart from './PaceChart';
+import Nav from './Nav';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      unit: 'metric'
+    };
+
+    // This binding is necessary to make `this` work in the callback
+    this.toggleUnit = this.toggleUnit.bind(this);
+  }
+
+  toggleUnit() {
+    const current = this.state.unit;
+    this.setState({
+      unit: current === 'metric' ? 'mile' : 'metric'
+    });
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <Nav changeMetric={this.toggleUnit} />
+        <header className="heading">
+          Pace Chart
+        </header>
+        <div>
+          <PaceChart unit={this.state.unit}/>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;

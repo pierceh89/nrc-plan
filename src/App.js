@@ -3,20 +3,37 @@ import './App.css';
 import PaceChart from './PaceChart';
 import Nav from './Nav';
 
-const default_unit = 'metric';
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      unit: 'metric'
+    };
 
-function App() {
-  return (
-    <div className="App">
-      <Nav/>
-      <header className="heading">
-        Pace Chart
-      </header>
-      <div>
-        <PaceChart unit={default_unit}/>
+    // This binding is necessary to make `this` work in the callback
+    this.toggleUnit = this.toggleUnit.bind(this);
+  }
+
+  toggleUnit() {
+    const current = this.state.unit;
+    this.setState({
+      unit: current === 'metric' ? 'mile' : 'metric'
+    });
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <Nav changeMetric={this.toggleUnit} />
+        <header className="heading">
+          Pace Chart
+        </header>
+        <div>
+          <PaceChart unit={this.state.unit}/>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default App;

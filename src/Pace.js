@@ -6,7 +6,7 @@ const inline_columns = ['5k', '10k', 'half', 'full'];
 
 function Pace(props) {
   const unit = props.unit;
-  const {best, pace} = convert(props.mile_pace, props.pace, unit);
+  const [best, pace] = convert(props.mile_pace, props.pace, unit);
   return (
     <div className="row">
       <Col>{best}</Col>
@@ -25,15 +25,33 @@ function Pace(props) {
 
 function convert(best, pace, unit) {
   if (unit === "mile") {
-    return {best, pace};
+    return [best, pace];
   }
 
-  return {best, pace};
+  let metric_best = convertToMetric(best.valueOf());
+  let metric_pace = Object.assign({}, pace);
+  for(const k of Object.keys(metric_pace)) {
+    if(k.indexOf('pace') !== -1) {
+      metric_pace[k] = convertToMetric(metric_pace[k]);
+    }
+  }
+
+  return [metric_best, metric_pace];
 }
 
-function _onSelected(e) {
-  e.preventDefault();
-  e.target.className = "row row-selected";
+function convertToMetric(pace) {
+  const t = pace.split(":");
+  const sec = parseInt(t[0])*60 + parseInt(t[1]);
+  const converted = sec*(1/1.60934);
+  const conv_min = Math.floor(converted / 60);
+  const conv_sec = Math.round(converted % 60);
+  const filling = conv_sec/10 > 1 ? "" : "0";
+  return "" + conv_min + ":" + filling + conv_sec;
 }
+
+// function _onSelected(e) {
+//   e.preventDefault();
+//   e.target.className = "row row-selected";
+// }
 
 export default Pace;

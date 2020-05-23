@@ -16,7 +16,7 @@ const kor_headings = ['1마일 기록',
   '템포 페이스',
   '하프 기록/1마일 페이스',
   '마라톤 기록/1마일 페이스',
-  '리커버리 페이스'];
+  '회복 페이스'];
 
 const kor_metric_headings = ['1km 기록',
   '5km 기록/1km 페이스',
@@ -24,7 +24,7 @@ const kor_metric_headings = ['1km 기록',
   '템포 페이스',
   '하프 기록/1km 페이스',
   '마라톤 기록/1km 페이스',
-  '리커버리 페이스'];
+  '회복 페이스'];
 
 function PaceChart(props) {
   const keys = Object.keys(pace_chart);

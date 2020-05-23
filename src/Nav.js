@@ -7,7 +7,7 @@ function Nav(props) {
       <Navbar.Brand href="#">NRC Pace Chart</Navbar.Brand>
       <Navbar.Toggle />
       <Navbar.Collapse className="justify-content-end">
-        <Button variant="outline-primary" onClick={props.changeMetric}>단위 변환</Button>
+        <Button variant="outline-success" onClick={props.changeMetric}>단위 변환</Button>
       </Navbar.Collapse>
     </Navbar>
   );

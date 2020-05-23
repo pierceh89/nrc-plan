@@ -1,16 +1,7 @@
 .App {
+  font-family: 'Noto Sans KR', sans-serif;
   text-align: center;
   justify-content: center;
-}
-
-.heading {
-  font-size: 4rem;
-  font-weight: bolder;
-}
-
-.column-heading {
-  background-color: #282c34;
-  color: white;
 }
 
 .row-selected {

@@ -25,12 +25,14 @@ class App extends React.Component {
     return (
       <div className="App">
         <Nav changeMetric={this.toggleUnit} />
-        <header className="heading">
-          Pace Chart
+        <header>
+          <h1 className="display-1">
+            페이스 차트
+          </h1>
         </header>
-        <div>
+        <main className="table-responsive-sm">
           <PaceChart unit={this.state.unit}/>
-        </div>
+        </main>
       </div>
     );
   }
